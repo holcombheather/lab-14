@@ -34,15 +34,23 @@ function showCart() {
   // TODO: Create a TR
   let trEl = document.createElement('tr')
   // TODO: Create a TD for the delete link, quantity,  and the item
-
+  let tdDeleteEl = document.createElement('td');
+  let tdQuantityEl = document.createElement('td');
+  let tdItemEl = document.createElement('td');
   // TODO: Add the TR to the TBODY and each of the TD's to the TR
-
+  tBodyEl.appendChild(trEl);
 }
 
 function removeItemFromCart(event) {
 
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
+  for (let cartItem of state.cart.items) {
+    if (event.target.className === cartItem.product.name) {
+      state.cart.removeItem(cartItem)
+    }
+  }
   // TODO: Save the cart back to local storage
+  state.cart.saveToLocalStorage()
   // TODO: Re-draw the cart table
   showCart();
 }
