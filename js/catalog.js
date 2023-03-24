@@ -11,7 +11,7 @@ function populateForm() {
 
   //TODO: Add an <option> tag inside the form's select for each product
   const selectElement = document.getElementById('items');
-  for (let i in state.allProducts) {
+  for (let i of state.allProducts) {
     let optionEl = document.createElement('option')
     optionEl.value = i.name;
     optionEl.innerText = i.name;
@@ -37,15 +37,35 @@ function handleSubmit(event) {
 
 // TODO: Add the selected item and quantity to the cart
 function addSelectedItemToCart() {
-  // TODO: suss out the item picked from the select list
-  // TODO: get the quantity
-  // TODO: using those, add one item to the Cart
+// TODO: suss out the item picked from the select list
+  let selectItemEl = document.getElementById('items');
+
+// // TODO: get the quantity
+// // TODO: using those, add one item to the Cart
+  let quantityInputEl = document.getElementById('quantity');
+  let quantity;
+
+  for (let product of state.allProducts) {
+    if (selectItemEl.value === product.name) {
+      quantity = quantityInputEl.value;
+      state.cart.addItem(product, quantity)
+    }
+  };
+
 }
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
   // TODO: Get the item and quantity from the form
+  const selectElement = document.getElementById('items');
+  const selectedItem = selectElement.value;
+  const quantity = document.getElementById('quantity').value;
+
   // TODO: Add a new element to the cartContents div with that information
+  const cartContents = document.getElementById('cartContents');
+  const newItem = document.createElement('div');
+  newItem.innerText = `${selectedItem} x ${quantity}`;
+  cartContents.appendChild(newItem);
 }
 
 // Set up the "submit" event listener on the form.
