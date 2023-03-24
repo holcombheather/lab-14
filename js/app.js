@@ -25,8 +25,8 @@ Cart.prototype.saveToLocalStorage = function() {
 };
 
 Cart.prototype.removeItem = function(item) {
-  this.items = this.items.filter(cartItem => cartItem.product.name !== item.product.name);
   // TODO: Fill in this instance method to remove one item from the cart.
+    this.items = this.items.filter(cartItem => cartItem.product.name !== item.product.name);
   // Note: You will have to decide what kind of parameter to pass in here!
 };
 
