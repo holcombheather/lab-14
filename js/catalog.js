@@ -37,13 +37,20 @@ function handleSubmit(event) {
 
 // TODO: Add the selected item and quantity to the cart
 function addSelectedItemToCart() {
-  // TODO: suss out the item picked from the select list
-  let selectElement = document.getElementById('items');
-  let selectedItem = selectElement.value;
-  // TODO: get the quantity
-  let quantity = document.getElementById('quantity').value;
-  // TODO: using those, add one item to the Cart
-  state.cart.addItem(selectedItem, quantity);
+// TODO: suss out the item picked from the select list
+  let selectItemEl = document.getElementById('items');
+
+// // TODO: get the quantity
+// // TODO: using those, add one item to the Cart
+  let quantityInputEl = document.getElementById('quantity');
+  let quantity;
+
+  for (let product of state.allProducts) {
+    if (selectItemEl.value === product.name) {
+      quantity = quantityInputEl.value;
+      state.cart.addItem(product, quantity)
+    }
+  };
 
 }
 
