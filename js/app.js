@@ -25,12 +25,17 @@ Cart.prototype.saveToLocalStorage = function() {
 };
 
 Cart.prototype.removeItem = function(item) {
+  this.items = this.items.filter(cartItem => cartItem.product.name !== item.product.name);
   // TODO: Fill in this instance method to remove one item from the cart.
   // Note: You will have to decide what kind of parameter to pass in here!
 };
 
 Cart.prototype.updateCounter = function() {
   // TODO: Update the cart count in the header nav with the number of items in the Cart
+  // const itemCount = this.items
+  const itemCount = this.items.reduce((accumulator, cartItem) => accumulator + cartItem.quantity, 0);
+  const cartCounter = document.getElementById('itemCount');
+  cartCounter.textContent = itemCount;
 }
 
 const CartItem = function(product, quantity) {
